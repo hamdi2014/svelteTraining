@@ -1,81 +1,37 @@
 <script>
-	import Thing from "./Thing.svelte";
-	import MouseMove from "./MouseMove.svelte";
-	import MouseMoveInline from "./MouseMoveInline.svelte";
-	import HelloWorld from "./HelloWorld.svelte";
-	import IfCondition from "./IfCondition.svelte";
-	import IfElseCondition from "./IfElseCondition.svelte";
-	import IfElseIfCondition from "./IfElseIfCondition.svelte";
-  	import EachBlocks from "./EachBlocks.svelte";
-  	import DynamicAttr from "./DynamicAttr.svelte";
-  	import Styling from "./Styling.svelte";
-  	import HtmlTags from "./HtmlTags.svelte";
-  import Assignments from "./Assignments.svelte";
-  import Declarations from "./Declarations.svelte";
-  import Statements from "./Statements.svelte";
-	// ---------------------------------------
 
-	// ----------------------------------
-
-	// ----------------------------------
-
-	// --------------------------------------------
-
-	let things = [
-		{id: 1, name: 'apple'},
-		{id: 2, name: 'banana'},
-		{id: 3, name: 'carrot'},
-		{id: 4, name: 'doughnut'},
-		{id: 5, name: 'egg'}
-	];
-
-	function handleClick() {
-		things = things.slice(1)
-	}
-
-	// -----------------------------------------------
-
-	async function getRandomNumber() {
-		const res = await fetch(`https://svelte.dev/tutorial/random-number`);
-		const text = await res.text();
-		console.log(text)
-		if (res.ok) {
-			return text;
-		} else {
-			throw new Error(text)
-		}
-	}
+	import MouseMove from "./Events/DomEvents.svelte";
+	import MouseMoveInline from "./Events/InlineHandlers.svelte";
+	import HelloWorld from "./introduction/HelloWorld.svelte";
+	import IfCondition from "./logic/IfCondition.svelte";
+	import IfElseCondition from "./logic/IfElseCondition.svelte";
+	import IfElseIfCondition from "./logic/IfElseIfCondition.svelte";
+  	import EachBlocks from "./logic/EachBlocks.svelte";
+  	import DynamicAttr from "./introduction/DynamicAttr.svelte";
+  	import Styling from "./introduction/Styling.svelte";
+  	import HtmlTags from "./introduction/HtmlTags.svelte";
+	import Assignments from "./reactivity/Assignments.svelte";
+	import Declarations from "./reactivity/Declarations.svelte";
+	import Statements from "./reactivity/Statements.svelte";
+	import UpdatingArrAndObj from "./reactivity/UpdatingArrAndObj.svelte";
+	import DeclareProps from "./props/DeclareProps.svelte";
+	import DefaultValue from "./props/DefaultValue.svelte";
+	import SpreadProps from "./props/SpreadProps.svelte";
+	import KeyedEachBlock from "./logic/KeyedEachBlock.svelte";
+	import AwaitBlocks from "./logic/AwaitBlocks.svelte";
+	import DomEvents from "./Events/DomEvents.svelte";
+	import InlineHandlers from "./Events/InlineHandlers.svelte";
+	import EventModifiers from "./Events/EventModifiers.svelte";
+	import ComponentEvents from "./Events/ComponentEvents.svelte";
+	import EventForwarding from "./Events/EventForwarding.svelte";
+	import DomEventForwarding from "./Events/DomEventForwarding.svelte";
+	import TextInputs from "./bindings/TextInputs.svelte";
+	import NumericInputs from "./bindings/NumericInputs.svelte";
+	import CheckboxInputs from "./bindings/CheckboxInputs.svelte";
+	import GroupInputs from "./bindings/GroupInputs.svelte";
+	import TextareaInputs from "./bindings/TextareaInputs.svelte";
 	
-	let promise = getRandomNumber();
-
-	function hndlClk() {
-		promise = getRandomNumber();
-	}
-
 </script>
-
-<button on:click={handleClick}>
-	Remove first thing
-</button>
-
-{#each things as thing (thing.id) }
-	<Thing name={thing.name}/>
-{/each}
-
-<hr>
-
-<button on:click={hndlClk}>
-	generate random number
-</button>
-
-<!-- replace this element -->
-{#await promise}
-	<p>...waiting</p>
-{:then number}
-	<p>The number is {number}</p>
-{:catch error}
-	<p style="color: red;">{error.message}</p>
-{/await}
 
 <HelloWorld />
 <DynamicAttr />
@@ -87,9 +43,43 @@
 <hr>
 <Statements />
 <hr>
+<UpdatingArrAndObj />
+<hr>
+<DeclareProps answer={42}/>
+<hr>
+<DefaultValue />
+<DefaultValue answer={1363}/>
+<hr>
+<SpreadProps />
+<hr>
 <IfCondition />
 <IfElseCondition />
 <IfElseIfCondition />
+<hr>
 <EachBlocks />
-<MouseMove />
-<MouseMoveInline />
+<hr>
+<KeyedEachBlock />
+<hr>
+<AwaitBlocks />
+<hr>
+<DomEvents />
+<hr>
+<InlineHandlers />
+<hr>
+<EventModifiers />
+<hr>
+<ComponentEvents />
+<hr>
+<EventForwarding />
+<hr>
+<DomEventForwarding />
+<hr>
+<TextInputs />
+<hr>
+<NumericInputs />
+<hr>
+<CheckboxInputs />
+<hr>
+<GroupInputs />
+<hr>
+<TextareaInputs />
